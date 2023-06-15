@@ -39,6 +39,14 @@ body{
     display: flex;
 }
 
+.play-again:hover{
+    cursor: pointer;
+}
+
+.reset-game:hover{
+    cursor: pointer;
+}
+
 .game-board{
     background-color: rgb(197, 61, 61);
     display: grid;
@@ -50,12 +58,32 @@ body{
 
 .game-box{
     background-color: #FFCDA8;
-    padding: 2.5vw;
+    width: 8vw;
+    height: 8vw;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .game-box:hover{
     background-color: #FA9884;
+    cursor: pointer;
+}
+
+.reset{
+    border: 2px solid black;
+    padding: 3px;
+    border-radius: 10px;
+    font-size: small;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.reset-buttons{
+    display: flex;
+    gap: 2vw;
+    margin-left: auto;
 }
 
 .box-text{
@@ -121,6 +149,26 @@ body{
     color: rgb(247, 144, 18);
     font-family: 'Orbitron', sans-serif;
     font-weight: bolder;
+}
+
+.end-show{
+    background-color: #FFE5CA;
+    padding: 2vw;
+    border-radius: 20px;
+    border: 2px solid #FA9884;
+    display:none;
+}
+
+.end-show p{
+    text-align: center;
+    margin: 1vw;
+    font-size: x-large;
+    background-color:#FFCDA8;
+    color:rgb(247, 144, 18);
+    font-weight: bolder;
+    border-radius: 10px;
+    padding: 2vw;
+    border: 2px solid #FA9884;
 }
 
 @media (max-width: 800px) {
