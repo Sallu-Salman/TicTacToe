@@ -4,6 +4,14 @@ let boxTexts = document.querySelectorAll('.box-text');
 let turnAndResult = document.querySelector('.turn-and-result');
 let reset = document.querySelector('.reset');
 let playAgain = document.querySelector('.play-again');
+let resetGame = document.querySelectorAll('.reset-game');
+let xScore = document.querySelector('#x-score');
+let oScore = document.querySelector('#o-score');
+
+let xScoreContainer = document.querySelector('.x-score-container');
+let oScoreContainer = document.querySelector('.o-score-container');
+
+let xScoreTracker = 0, oScoreTracker = 0;
 let gameOver = false;
 
 
@@ -18,7 +26,33 @@ function changeTurn() {
     }
 }
 
+function incrementScore() {
+    if(turn === 'X') {
+        xScoreTracker++;
+    }
+    else {
+        oScoreTracker++;
+    }
+}
 
+function changeScoreBoard() {
+    xScore.textContent = xScoreTracker;
+    oScore.textContent = oScoreTracker;
+}
+
+function blinker() {
+    let winner = (turn === 'X' ? xScoreContainer : oScoreContainer);
+    console.log(winner);
+    let presentColor = getComputedStyle(winner).backgroundColor;
+    console.log(presentColor);
+
+    winner.style.backgroundColor = '#FA9884';
+    changeScoreBoard();
+    setTimeout(() => {
+        winner.style.backgroundColor = presentColor;
+    }, 500);
+    
+}
 
 function checkForWin() {
     let wins = [
@@ -33,6 +67,8 @@ function checkForWin() {
             gameOver = true;
             document.querySelector('.game-board').style.display = 'none';
             document.querySelector('.end-show').style.display = 'block';
+            incrementScore();
+            blinker();
         }
     })
 }
@@ -65,3 +101,14 @@ let resetter = ()=> {
 
 reset.addEventListener('click', resetter);
 playAgain.addEventListener('click', resetter);
+
+
+
+Array.from(resetGame).forEach(element => {
+    element.addEventListener('click', ()=>{
+        resetter();
+        xScoreTracker = 0;
+        oScoreTracker = 0;
+        changeScoreBoard();
+    })
+})
